@@ -40,9 +40,5 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    private void test()
-    {
-        int i = 1+1;
-    }
 
 }
