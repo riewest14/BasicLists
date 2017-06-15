@@ -39,5 +39,10 @@ public class MainScreenActivity extends AppCompatActivity implements View.OnClic
             startActivity(newList);
         }
     }
-    
+
+    private void test()
+    {
+        int i = 1+1;
+    }
+
 }
