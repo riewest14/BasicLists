@@ -12,11 +12,11 @@ import java.io.IOException;
  * Created by chase on 6/4/2017.
  */
 
-public class PublicListFile extends ListFile {
+public class BasicListFile extends ListFile {
 
     protected final String BULLET_SEQUENCE = "\u2022 ";
 
-    public PublicListFile(Activity activity, String fileName, String folder) {
+    public BasicListFile(Activity activity, String fileName, String folder) {
         super(activity, fileName, folder);
         setFilePath();
     }

@@ -3,13 +3,10 @@ package com.example.chase.basiclists.control;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 /**
@@ -61,14 +58,14 @@ public class ManageLists {
         try {
             ListFile tempFile;
             if(startFolder == null)
-                tempFile = new PublicListFile(activity, null, null);
+                tempFile = new BasicListFile(activity, null, null);
             else
-                tempFile = new PublicListFile(activity, null, startFolder);
+                tempFile = new BasicListFile(activity, null, startFolder);
             File publicSavesFolder = tempFile.getNotesStorageDir(tempFile.getFolderPath());
             File[] listOfFiles = publicSavesFolder.listFiles();
             for (File temp : listOfFiles) {
                 if (temp.isFile()) {
-                    listFiles.add(new PublicListFile(activity, temp.getName().substring(0, temp.getName().lastIndexOf('.')), tempFile.getFolder()));
+                    listFiles.add(new BasicListFile(activity, temp.getName().substring(0, temp.getName().lastIndexOf('.')), tempFile.getFolder()));
                 }
                 else if (temp.isDirectory()){
                     readExistingFiles(temp.getName());

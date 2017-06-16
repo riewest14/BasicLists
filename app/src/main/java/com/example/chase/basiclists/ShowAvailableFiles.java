@@ -15,7 +15,7 @@ import android.widget.ListView;
 import com.example.chase.basiclists.control.BulletedListFile;
 import com.example.chase.basiclists.control.ListFile;
 import com.example.chase.basiclists.control.ManageLists;
-import com.example.chase.basiclists.control.PublicListFile;
+import com.example.chase.basiclists.control.BasicListFile;
 
 import java.util.ArrayList;
 
@@ -129,7 +129,7 @@ public class ShowAvailableFiles extends AppCompatActivity implements View.OnClic
 
         if (file instanceof BulletedListFile)
             main = new Intent(this, BulletedListActivity.class);
-        else if (file instanceof PublicListFile)
+        else if (file instanceof BasicListFile)
             main = new Intent(this, BasicListActivity.class);
         else
             return false;

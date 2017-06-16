@@ -3,8 +3,6 @@ package com.example.chase.basiclists.control;
 import android.app.Activity;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,7 +15,7 @@ import java.util.ArrayList;
  * Created by chase on 6/11/2017.
  */
 
-public class BulletedListFile extends PublicListFile {
+public class BulletedListFile extends BasicListFile {
     public BulletedListFile(Activity activity, String fileName, String folder) {
         super(activity, fileName, folder);
     }
@@ -37,8 +35,7 @@ public class BulletedListFile extends PublicListFile {
                 if (line != fileText.get(fileText.size() - 1))
                     fos.write(System.getProperty("line.separator").getBytes());
             }
-            fos.flush();
-            fos.close();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
@@ -47,8 +44,10 @@ public class BulletedListFile extends PublicListFile {
             return false;
         }finally {
             try{
-                if (fos != null)
-                    fos.close();
+                if (fos != null){
+                        fos.flush();
+                        fos.close();
+                    }
             } catch (Exception e) {
                 e.printStackTrace();
             }

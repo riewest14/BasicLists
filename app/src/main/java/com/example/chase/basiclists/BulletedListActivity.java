@@ -1,15 +1,12 @@
 package com.example.chase.basiclists;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,93 +15,41 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.chase.basiclists.control.BulletedListFile;
-import com.example.chase.basiclists.control.ListFile;
-import com.example.chase.basiclists.control.PublicListFile;
 
 import java.util.ArrayList;
 
-public class BulletedListActivity extends ListActivity implements View.OnClickListener {
+public class BulletedListActivity extends BasicListActivitySuperclass implements View.OnClickListener {
 
     private static final String BULLET_STRING = "\u2022 ";
-
-    private BulletedListFile fileToView;
-    private boolean newFile;
-    private boolean changedFile;
-
     private ListView bulletList;
-    private Button btnAdd, btnSave, btnCancel;
-    private EditText etxtFileName;
     private ArrayList<String> listItems = new ArrayList<>();
     private ArrayAdapter<String> adapter;
-    private int startSize;
-    private String startName;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState)
+    {
         setContentView(R.layout.activity_bulleted_list);
-
-        String fileName, folder;
-        if(savedInstanceState == null){
-            Bundle extras = getIntent().getExtras();
-            if(extras == null){
-                fileName = null;
-                folder = null;
-            } else {
-                fileName = extras.getString("fileName");
-                folder = extras.getString("fileFolder");
-                newFile = extras.getBoolean("NewList");
-                if(!newFile)
-                    fileToView = new BulletedListFile(this,fileName, folder);
-                else
-                    fileToView = new BulletedListFile(this, null, null);
-            }
-        }
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
-        setListAdapter(adapter);
-        initializeControls();
+        super.onCreate(savedInstanceState);
     }
 
-    private void initializeControls()
+    @Override
+    protected void initializeList(String fileName, String folder)
     {
-
-        btnCancel = (Button)findViewById(R.id.btnCancelBull);
-        btnCancel.setOnClickListener(this);
-
-        btnSave = (Button)findViewById(R.id.btnSaveBull);
-        btnSave.setOnClickListener(this);
-
-        etxtFileName = (EditText)findViewById(R.id.etxtFileNameBull);
-        if (!newFile)
-        {
-            etxtFileName.setText(fileToView.getFileName().substring(0, fileToView.getFileName().lastIndexOf('.')));
-            etxtFileName.setEnabled(false);
-        }
-        InputFilter filter = new InputFilter() {
-            public CharSequence filter(CharSequence source, int start, int end,
-                                       Spanned dest, int dstart, int dend) {
-                for (int i = start; i < end; i++) {
-                    if (Character.isWhitespace(source.charAt(i))) {
-                        return "";
-                    }
-                }
-                return null;
-            }
-
-        };
-        etxtFileName.setFilters(new InputFilter[] {filter});
-
+        bulletList = (ListView)findViewById(R.id.lvBulletList);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+        bulletList.setAdapter(adapter);
         if(!newFile) {
-            setItems(fileToView.readFileBulletList());
+            fileToView = new BulletedListFile(this,fileName, folder);
+            setItems( ((BulletedListFile)fileToView).readFileBulletList());
             startSize = listItems.size();
-            startName = fileToView.getFileName();
+            startName = fileName;
         }
         else {
             startSize = 0;
             startName = "";
+            fileToView = new BulletedListFile(this, null, null);
         }
 
-        bulletList = getListView();
         bulletList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
@@ -120,28 +65,12 @@ public class BulletedListActivity extends ListActivity implements View.OnClickLi
             }
         });
         addItem(" ");
-
     }
-
-
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btnCancelBull:
-                    cancel();
-                break;
-            case R.id.btnSaveBull:
-                    save();
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void save()
+    protected void save()
     {
-        if(!changedFile) {
+        if(startSize == listItems.size() - 1 && startName.equals(etxtFileName.getText().toString())) {
             finish();
             return;
         }
@@ -150,19 +79,20 @@ public class BulletedListActivity extends ListActivity implements View.OnClickLi
             fileToView = new BulletedListFile(this, etxtFileName.getText().toString(), null);
         else
             fileToView.deleteFile();
-        if(fileToView.saveFile(listItems))
+        if(((BulletedListFile)fileToView).saveFile(listItems))
             finish();
         else
             Toast.makeText(this, "FILE NOT SAVED", Toast.LENGTH_SHORT).show();
     }
 
-    private void cancel()
+    @Override
+    protected void cancel()
     {
-        if(!changedFile) {
+        if(startSize == listItems.size() - 1 && startName.equals(etxtFileName.getText().toString())) {
             finish();
             return;
         }
-        if (listItems.size() > startSize || etxtFileName.getText().toString() != startName )
+        if (etxtFileName.getText().toString() != startName )
         {
             new AlertDialog.Builder(this)
                     .setTitle("Discard")
@@ -204,8 +134,6 @@ public class BulletedListActivity extends ListActivity implements View.OnClickLi
 
     private void newLine(String oldText, final int position)
     {
-        if(!changedFile)
-            changedFile = true;
         if(oldText == null) {
             oldText = "";
         }

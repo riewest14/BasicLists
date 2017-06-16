@@ -8,18 +8,24 @@
     tools:context="com.example.chase.basiclists.TestActivity">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="bottom"
         android:orientation="vertical"
         android:weightSum="1"
         android:background="@android:color/darker_gray"
         android:padding="4dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/etxtFileNameBull"
+            android:id="@+id/etxtFileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLength="30"
@@ -46,12 +52,11 @@
             tools:layout_editor_absoluteY="8dp">
 
             <ListView
-                android:id="@android:id/list"
+                android:id="@+id/lvBulletList"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:drawSelectorOnTop="false"
                 android:background="#ffffff"
-                />
+                android:drawSelectorOnTop="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -66,7 +71,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnCancelBull"
+                    android:id="@+id/btnCancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -75,7 +80,7 @@
                     tools:layout_editor_absoluteY="402dp" />
 
                 <Button
-                    android:id="@+id/btnSaveBull"
+                    android:id="@+id/btnSave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
