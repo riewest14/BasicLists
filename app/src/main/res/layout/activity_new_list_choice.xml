@@ -27,10 +27,12 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
             android:padding="4dp"
+            android:text="Choose A File Type"
             android:textColor="#000000"
-            android:textSize="25dp"
-            android:text="Choose A File Type" />
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
         <ListView
             android:id="@+id/lvFileChoice"

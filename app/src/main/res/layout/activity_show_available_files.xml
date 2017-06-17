@@ -13,7 +13,7 @@
         android:gravity="bottom"
         android:orientation="vertical"
         android:weightSum="1"
-        android:background="@android:color/darker_gray"
+        android:background="#000000"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintBottom_creator="1"
@@ -27,7 +27,9 @@
             android:id="@+id/btnDeleteFiles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delete Files" />
+            android:text="Delete Files"
+            android:textSize="20dp"
+            android:background="@drawable/button_rounded_corners_gradient_top"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +60,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="New File"/>
+                android:text="New File"
+                android:textSize="20dp"
+                android:background="@drawable/button_rounded_corners_gradient_bottom"/>
 
         </LinearLayout>
     </LinearLayout>

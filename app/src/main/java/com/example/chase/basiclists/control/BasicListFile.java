@@ -1,12 +1,17 @@
 package com.example.chase.basiclists.control;
 
 import android.app.Activity;
+import android.content.res.Resources;
+
+import com.example.chase.basiclists.R;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by chase on 6/4/2017.
@@ -30,6 +35,7 @@ public class BasicListFile extends ListFile {
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(file.getPath() + File.separator + fileName);
+            fileText = "BasicList\n" + fileText;
             byte[] buffer = fileText.getBytes();
             fos.write(buffer, 0, buffer.length);
             fos.close();
@@ -77,8 +83,11 @@ public class BasicListFile extends ListFile {
             }
 
         }
-        if(fileText != null)
+        if(fileText != null) {
+            if(fileText.contains("BasicList\n"))
+                fileText = fileText.substring(fileText.lastIndexOf("BasicList\n"));
             return fileText;
+        }
         return "FILE NOT READ";
     }
 
@@ -93,8 +102,10 @@ public class BasicListFile extends ListFile {
     public ListFile getFileType() {
         String fileText = readFile();
 
-        if (fileText.contains(BULLET_SEQUENCE))
+        if (fileText.contains("BulletedList\n"))
                 return new BulletedListFile(activity, fileName.substring(0, fileName.lastIndexOf('.')), folder);
+        if (fileText.contains("NumberedList\n"))
+            return this;
         return this;
     }
 

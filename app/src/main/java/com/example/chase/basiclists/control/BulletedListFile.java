@@ -24,7 +24,7 @@ public class BulletedListFile extends BasicListFile {
     {
         if (!getExternalStorageWritable())
             return false;
-
+        fileText.add(0, "BulletedList");
         File file = getNotesStorageDir(folderPath);
         FileOutputStream fos = null;
         try {
@@ -88,8 +88,10 @@ public class BulletedListFile extends BasicListFile {
             }
 
         }
-        if(fileText != null)
+        if(fileText != null) {
+            fileText.remove(0);
             return fileText;
+        }
         return null;
     }
 }

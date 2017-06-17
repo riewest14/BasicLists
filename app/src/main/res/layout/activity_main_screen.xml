@@ -21,24 +21,100 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
+            android:text="Welcome"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:paddingTop="20dp"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
+            android:text="To"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
+            android:text="BasicLists"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="8dp">
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="10dp">
             <Button
                 android:id="@+id/btnSeeLists"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="15dp"
+                android:text="View Saved Lists"
+                android:textSize="20dp"
+                android:background="@drawable/button_rounded_corners_gradient"
+ />
+            </android.support.constraint.ConstraintLayout>
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="View Saved Lists" />
-
+                android:layout_gravity="center"
+                android:padding="10dp">
             <Button
                 android:id="@+id/btnCreateList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Create New List" />
+                android:padding="15dp"
+                android:text="Create New List"
+                android:textSize="20dp"
+                android:background="@drawable/button_rounded_corners_gradient"
+ />
+            </android.support.constraint.ConstraintLayout>
+
         </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Created By: Riewest14"
+                android:textAlignment="center"
+                android:fontFamily="serif-monospace"
+                android:textSize="20sp"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
