@@ -11,9 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.chase.basiclists.control.BulletedListFile;
-import com.example.chase.basiclists.control.ListFile;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,7 +18,6 @@ public class NewListChoiceActivity extends AppCompatActivity {
     private Resources res;
     private ArrayList<String> fileTypes;
     private ArrayAdapter<String> adapter;
-
     private ListView lvFileChoice;
 
     @Override
@@ -66,7 +62,7 @@ public class NewListChoiceActivity extends AppCompatActivity {
                 createList = new Intent(this, BulletedListActivity.class);
                 break;
             case "NumberedList":
-                Toast.makeText(this, fileType + " Not Implemented", Toast.LENGTH_SHORT).show();
+                createList = new Intent(this, NumberedListActivity.class);
                 break;
             default:
                 Toast.makeText(this, "Not A File Type", Toast.LENGTH_SHORT).show();

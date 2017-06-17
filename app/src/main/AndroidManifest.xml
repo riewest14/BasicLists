@@ -23,6 +23,7 @@
         <activity android:name=".BasicListActivity" />
         <activity android:name=".ShowAvailableFiles" />
         <activity android:name=".BulletedListActivity" />
+        <activity android:name=".NumberedListActivity" />
         <activity android:name=".NewListChoiceActivity"></activity>
     </application>
 

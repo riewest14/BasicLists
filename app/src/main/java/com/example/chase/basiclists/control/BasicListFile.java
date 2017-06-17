@@ -103,9 +103,9 @@ public class BasicListFile extends ListFile {
         String fileText = readFile();
 
         if (fileText.contains("BulletedList\n"))
-                return new BulletedListFile(activity, fileName.substring(0, fileName.lastIndexOf('.')), folder);
+            return new BulletedListFile(activity, fileName.substring(0, fileName.lastIndexOf('.')), folder);
         if (fileText.contains("NumberedList\n"))
-            return this;
+            return new NumberedListFile(activity, fileName.substring(0, fileName.lastIndexOf('.')), folder);
         return this;
     }
 
