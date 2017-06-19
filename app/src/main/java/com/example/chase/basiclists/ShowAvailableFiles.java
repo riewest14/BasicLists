@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.chase.basiclists.control.BulletedListFile;
@@ -33,7 +34,8 @@ public class ShowAvailableFiles extends AppCompatActivity implements View.OnClic
 
     private ManageLists ListManager;
     private ListView lvFileList;
-    private Button btnNewList, btnDeleteFiles;
+    private Button btnNewList;
+    private ImageButton btnDeleteFiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +77,7 @@ public class ShowAvailableFiles extends AppCompatActivity implements View.OnClic
             }
         });
 
-        btnDeleteFiles = (Button)findViewById(R.id.btnDeleteFiles);
+        btnDeleteFiles = (ImageButton)findViewById(R.id.btnDeleteFiles);
         btnDeleteFiles.setOnClickListener(this);
 
         btnNewList = (Button)findViewById(R.id.btnNewList);
@@ -107,12 +109,12 @@ public class ShowAvailableFiles extends AppCompatActivity implements View.OnClic
         {
             if(!deleteMode) {
                 deleteMode = true;
-                btnDeleteFiles.setText(DELETE_CONFIRM);
+                btnDeleteFiles.setImageResource(R.drawable.trash_can_confirm);
                 deletePositions = new ArrayList<>();
             }
             else {
                 processDelete();
-                btnDeleteFiles.setText(DELETE_TEXT);
+                btnDeleteFiles.setImageResource(R.drawable.trash_can_delete);
                 deleteMode = false;
             }
         }

@@ -57,13 +57,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnNewList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="New File"
+
                 android:textSize="20dp"
+                android:src="@drawable/trash_can_delete"
                 android:background="@drawable/button_rounded_corners_gradient_bottom"/>
 
         </LinearLayout>

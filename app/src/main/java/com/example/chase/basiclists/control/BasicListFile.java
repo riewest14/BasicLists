@@ -19,6 +19,7 @@ import java.util.Arrays;
 
 public class BasicListFile extends ListFile {
 
+    public static final String BASIC_LIST = "BasicList\n";
     protected final String BULLET_SEQUENCE = "\u2022 ";
 
     public BasicListFile(Activity activity, String fileName, String folder) {
@@ -35,7 +36,7 @@ public class BasicListFile extends ListFile {
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(file.getPath() + File.separator + fileName);
-            fileText = "BasicList\n" + fileText;
+            fileText = BASIC_LIST + fileText;
             byte[] buffer = fileText.getBytes();
             fos.write(buffer, 0, buffer.length);
             fos.close();
@@ -81,11 +82,10 @@ public class BasicListFile extends ListFile {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         if(fileText != null) {
-            if(fileText.contains("BasicList\n"))
-                fileText = fileText.substring(fileText.lastIndexOf("BasicList\n"));
+            if(fileText.contains(BASIC_LIST))
+                fileText = fileText.substring(fileText.lastIndexOf(BASIC_LIST) + BASIC_LIST.length());
             return fileText;
         }
         return "FILE NOT READ";
@@ -101,7 +101,6 @@ public class BasicListFile extends ListFile {
     @Override
     public ListFile getFileType() {
         String fileText = readFile();
-
         if (fileText.contains("BulletedList\n"))
             return new BulletedListFile(activity, fileName.substring(0, fileName.lastIndexOf('.')), folder);
         if (fileText.contains("NumberedList\n"))
